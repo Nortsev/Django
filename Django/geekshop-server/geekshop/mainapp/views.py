@@ -6,6 +6,6 @@ def index(request):
 
 
 def product(request):
-      return render(request, 'mainapp/product.html')
+      return render(request, 'mainapp/products.html')
 
 
