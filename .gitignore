@@ -1,6 +1,5 @@
 db.sqlite3
- .DS_Store
- .idea
- venv
- db.sqlite3
- __pycache__/
+.DS_Store
+.idea/
+venv
+__pycache__/
