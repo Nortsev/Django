@@ -1,7 +1,7 @@
 {% extends 'mainapp/base.html' %}
 {% load static %}
 
-
+{% block title %} {{ title }}{% endblock %}
 {% block css %}
     <!-- Custom styles for this template -->
     <link href="{% static 'css/products.css' %}" rel="stylesheet">
