@@ -3,18 +3,15 @@ from mainapp.models import ProductCategory, Product
 
 
 def index(request):
+
+    return render(request, 'mainapp/index.html')
+
+
+def products(request, pk=None ):
     context = {
-        'title': 'GeekShop'
-    }
-    return render(request, 'mainapp/index.html', context)
-
-
-def product(request):
-    context = {'title': 'GeekShop - Каталог',
-               'style_link': 'css/products.css',
                'products': Product.objects.all(),
                                  }
-    return render(request, 'mainapp/products.html', context = context)
+    return render(request, 'mainapp/products.html', context=context)
 
 
 def test_context(request):
