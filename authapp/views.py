@@ -17,3 +17,8 @@ def login(request):
 
     context = {'form': form}
     return render(request, 'authapp/login.html', context)
+
+
+def logout(request):
+    auth.logout(request)
+    return HttpResponseRedirect(reverse('main'))
