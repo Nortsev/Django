@@ -7,3 +7,6 @@ urlpatterns = [
     path('', mainapp.products, name="products"),
     path('<int:id>/', mainapp.products, name='product'),
 ]
+
+
+
