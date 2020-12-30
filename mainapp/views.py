@@ -3,22 +3,19 @@ from mainapp.models import ProductCategory, Product
 
 
 def index(request):
-
     return render(request, 'mainapp/index.html')
 
 
-def products(request, category_id=None ):
+def products(request, category_id=None):
+    context = {
+            'categories': ProductCategory.objects.all(),
+    }
     if category_id:
         products = Product.objects.filter(category_id=category_id)
-        context = {
-            'products': products,
-            'categories': ProductCategory.objects.all(),
-        }
+        context.update({'products': products})
     else:
-        context = {
-            'products': Product.objects.all(),
-            'categories': ProductCategory.objects.all(),
-        }
+        context.update({'products': Product.objects.all()})
+
     return render(request, 'mainapp/products.html', context=context)
 
 
