@@ -22,9 +22,9 @@ def login(request):
 
 
 def register(request):
-    form = UserRegisterForm(data=request.POST)
-    if request.method == 'POST':
 
+    if request.method == 'POST':
+        form = UserRegisterForm(data=request.POST)
         if form.is_valid():
             form.save()
             messages.success(request, 'Вы успешно зарегистрировались')
