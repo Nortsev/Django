@@ -7,5 +7,6 @@ urlpatterns = [
     path('', adminapp.index, name='index'),
     path('users/', adminapp.admin_users, name='admin_users'),
     path('users/create', adminapp.admin_users_create, name='admin_users_creates'),
+    path('users/update/<int:user_id>/', adminapp.admin_users_update, name='admin_users_update'),
 
 ]

@@ -17,7 +17,7 @@ def admin_users(request):
 
 def admin_users_create(request):
     if request.method == 'POST':
-        form = UserAdminRegisterForm(data=request.POST, files= request.FILES)
+        form = UserAdminRegisterForm(data=request.POST, files=request.FILES)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('admin_staff:admin_users'))
@@ -27,3 +27,7 @@ def admin_users_create(request):
 
     context = {'form': form}
     return render(request, 'adminapp/admin-users-create.html', context)
+
+
+def admin_users_update(request, user_id):
+    return render(request, 'adminapp/admin-users-update-detele.html')
