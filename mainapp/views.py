@@ -12,9 +12,9 @@ def products(request,category_id=None, page =1 ):
             'categories': ProductCategory.objects.all(),
     }
     if category_id:
-        products = Product.objects.filter(category_id=category_id)
+        products = Product.objects.filter(category_id=category_id).order_by('price')
     else:
-        products = Product.objects.all()
+        products = Product.objects.all().order_by('price')
     paginator = Paginator(products, 3)
     try:
         products_paginator = paginator.page(page)
