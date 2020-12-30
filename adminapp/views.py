@@ -21,6 +21,7 @@ def admin_users_create(request):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('admin_staff:admin_users'))
+
     else:
         form = UserAdminRegisterForm()
 
