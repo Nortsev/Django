@@ -5,4 +5,6 @@ app_name = 'adminapp'
 
 urlpatterns = [
     path('', adminapp.index, name='index'),
+    path('users/', adminapp.admin_users, name='admin_users'),
+
 ]
