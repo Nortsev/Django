@@ -42,11 +42,21 @@ class UserUpdateView(UpdateView):
     def dispatch(self, request, *args, **kwargs):
         return super(UserUpdateView, self).dispatch(request, *args, **kwargs)
 
+class UserDeleteView (DeleteView):
+    model = User
+    template_name = 'adminapp/admin-users-update-detele.html'
+    success_url = reverse_lazy('adminapp:admin_users')
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.is_active = False
+        self.object.save()
+        return HttpResponseRedirect(self.get_success_url())
 
 
-@user_passes_test(lambda u: u.is_superuser)
-def admin_users_remove(request, user_id):
-    user = User.objects.get(id=user_id)
-    user.is_active = False
-    user.save()
-    return HttpResponseRedirect(reverse('admin_staff:admin_users'))
+# @user_passes_test(lambda u: u.is_superuser)
+# def admin_users_remove(request, user_id):
+#     user = User.objects.get(id=user_id)
+#     user.is_active = False
+#     user.save()
+#     return HttpResponseRedirect(reverse('admin_staff:admin_users'))

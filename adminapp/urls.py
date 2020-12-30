@@ -8,6 +8,6 @@ urlpatterns = [
     path('users/', adminapp.UserListView.as_view(), name='admin_users'),
     path('users/create', adminapp.UserCreateView.as_view(), name='admin_users_creates'),
     path('users/update/<int:pk>/', adminapp.UserUpdateView.as_view(), name='admin_users_update'),
-    path('users/remove/<int:user_id>/', adminapp.admin_users_remove, name='admin_users_remove'),
+    path('users/remove/<int:pk>/', adminapp.UserDeleteView.as_view(), name='admin_users_remove'),
 
 ]
