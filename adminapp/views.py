@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponseRedirect
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse_lazy
 from authapp.models import User
 from adminapp.forms import UserAdminRegisterForm, UserAdminProfileForm
 from django.contrib.auth.decorators import user_passes_test
@@ -12,13 +12,14 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 def index(request):
     return render(request, 'adminapp/index.html')
 
+
 class UserListView(ListView):
     model = User
     template_name = 'adminapp/admin-users-read.html'
+
     @method_decorator(user_passes_test(lambda u: u.is_superuser))
     def dispatch(self, request, *args, **kwargs):
         return super(UserListView, self).dispatch(request, *args, **kwargs)
-
 
 
 class UserCreateView(CreateView):
@@ -42,7 +43,8 @@ class UserUpdateView(UpdateView):
     def dispatch(self, request, *args, **kwargs):
         return super(UserUpdateView, self).dispatch(request, *args, **kwargs)
 
-class UserDeleteView (DeleteView):
+
+class UserDeleteView(DeleteView):
     model = User
     template_name = 'adminapp/admin-users-update-detele.html'
     success_url = reverse_lazy('adminapp:admin_users')
@@ -52,11 +54,3 @@ class UserDeleteView (DeleteView):
         self.object.is_active = False
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
-
-
-# @user_passes_test(lambda u: u.is_superuser)
-# def admin_users_remove(request, user_id):
-#     user = User.objects.get(id=user_id)
-#     user.is_active = False
-#     user.save()
-#     return HttpResponseRedirect(reverse('admin_staff:admin_users'))
